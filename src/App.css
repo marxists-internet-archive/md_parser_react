@@ -1,0 +1,35 @@
+.App {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  padding: 6px;
+}
+
+html, body {
+  overflow: hidden;
+}
+
+
+
+.output {
+  overflow: scroll;
+  height: 95vh;
+
+
+}
+
+.input {
+  overflow: scroll !important;
+  height: 95vh;
+  border-right: 1px solid grey;
+
+
+
+}
+
+/* textarea {
+  height: 80vh !important;
+  overflow: scroll !important;
+} */
