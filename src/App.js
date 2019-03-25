@@ -12,7 +12,8 @@ import doc from './files/data.js';
 let md = require('markdown-it')({
   html: true,
   breaks: true,
-  linkify: true
+  linkify: true,
+  typographer: true
 }).use(require('markdown-it-footnote'));; 
 // let handlebars = require('handlebars');
 
