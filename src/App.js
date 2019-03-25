@@ -3,6 +3,7 @@ import 'materialize-css'; // It installs the JS asset only
 import 'materialize-css/dist/css/materialize.min.css';
 
 import React, { Component } from 'react';
+import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 import InputField from './components/InputField';
 import OutputField from './components/OutputField';
 import Navbar from './components/Navbar'
@@ -83,7 +84,9 @@ class App extends Component {
   }
 
   downloadHtml = (event) => {
-    alert('Данная функция находится еще в разработке!');
+    alert("Функция не работает еще полноценно!")
+    let blob = new Blob([this.state.doc.mdResult[1]], {type: "text/html;charset=utf-8"});
+    FileSaver.saveAs(blob, "generated.html"); 
   }
 
   inDevAlert = (event) => {
@@ -101,9 +104,11 @@ class App extends Component {
     const { author, title, origin, source, mdText } = this.state.doc;
 
     return (
+      <Router>
       <div className="App">
         <Navbar onClickMD={this.downloadMD} onClickHtml={this.downloadHtml} inDevAlert={this.inDevAlert} />
         <br />
+
         <div className="row">
           <div className="col s6 input">
             <form className="col s12">
@@ -175,7 +180,7 @@ class App extends Component {
           </div>
         </div>
       </div>
-
+      </Router>
     );
   }
 }
