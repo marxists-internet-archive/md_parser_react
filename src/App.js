@@ -1,4 +1,5 @@
 import './App.css';
+import 'normalize.css'
 import 'materialize-css'; // It installs the JS asset only
 import 'materialize-css/dist/css/materialize.min.css';
 
@@ -107,12 +108,10 @@ class App extends Component {
       <Router>
       <div className="App">
         <Navbar onClickMD={this.downloadMD} onClickHtml={this.downloadHtml} inDevAlert={this.inDevAlert} />
-        <br />
-
-        <div className="row">
+        <div className="row shadow">
           <div className="col s6 input">
+            <br />
             <form className="col s12">
-
               <div className="row">
                 <div className="col s6">
                   <InputField

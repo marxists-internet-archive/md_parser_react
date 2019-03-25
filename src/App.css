@@ -8,7 +8,8 @@
 } */
 
 body {
-  padding: 6px;
+  padding: 5px;
+ 
 }
 
 html, body {
@@ -23,18 +24,23 @@ color:#212121 !important;
 
 .output {
   overflow: scroll;
-  height: 95vh;
+  height: 90vh;
 
 
 }
 
 .input {
   overflow: scroll !important;
-  height: 95vh;
+  height: 90vh;
   border-right: 1px solid grey;
 
+}
 
-
+.shadow {
+  -moz-box-shadow:    inset 0 0 4px grey;
+  -webkit-box-shadow: inset 0 0 4px grey;
+  box-shadow:         inset 0 0 4px grey;
+  border-radius: 4px;
 }
 
 /* textarea {
