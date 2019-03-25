@@ -3,12 +3,20 @@
   padding: 0;
 }
 
+/* .App-logo {
+  width: 10px;
+} */
+
 body {
   padding: 6px;
 }
 
 html, body {
   overflow: hidden;
+}
+
+nav ul a {
+color:#212121 !important;
 }
 
 

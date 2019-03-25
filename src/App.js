@@ -5,16 +5,25 @@ import 'materialize-css/dist/css/materialize.min.css';
 import React, { Component } from 'react';
 import InputField from './components/InputField';
 import OutputField from './components/OutputField';
+import Navbar from './components/Navbar'
+
+import logo from './logo.jpg';
 
 //import data
 import doc from './files/data.js';
 
-let md = require('markdown-it')({
+//regex for future script: '(?<=§§JSONBLOCK_START§§)(.*\n?)*(?=§§JSONBLOCK_END§§)'
+
+var md = require('markdown-it')({
   html: true,
   breaks: true,
   linkify: true,
   typographer: true
-}).use(require('markdown-it-footnote'));; 
+}).use(require('markdown-it-footnote'));;
+var FileSaver = require('file-saver');
+var beautify_js = require('js-beautify');
+var beautify_html = require('js-beautify').html;
+
 // let handlebars = require('handlebars');
 
 
@@ -28,6 +37,9 @@ class App extends Component {
     }
   }
 
+  myXOR = (a, b) => {
+    return (a || b) && !(a && b);
+  }
   onDismiss = (id) => {
     const updatedList = this.state.list.filter(item => item.objectID !== id);
     this.setState({ list: updatedList });
@@ -35,8 +47,8 @@ class App extends Component {
 
   onInputChangeMd = (param) => (event) => {
     let doc = { ...this.state.doc };
-    doc[param[0]][2]= event.target.value
-    doc.mdResult = md.render(doc[param[0]][2])
+    doc[param[0]][2] = event.target.value
+    doc.mdResult[1] = md.render(doc[param[0]][2])
     this.setState({ doc });
   }
 
@@ -46,6 +58,38 @@ class App extends Component {
     this.setState({ doc });
 
   }
+
+
+
+  downloadMD = (event) => {
+    let jsonData = {};
+    for (let field in this.state.doc) {
+      if (!this.myXOR((field === 'mdText'), (field ==='mdResult'))) {
+        // jsonData.field[0] = field[2];
+        jsonData[field] = this.state.doc[field][2];
+      }
+
+    }
+    console.log(jsonData);
+    //Prepare String for future manipulation
+    jsonData = beautify_js(JSON.stringify(jsonData));
+    jsonData = "§§JSONBLOCK_START§§\n" + jsonData + "\n§§JSONBLOCK_END§§\n\n"
+
+    //Add markdown block
+    jsonData = jsonData + this.state.doc.mdText[2]
+
+    let blob = new Blob([jsonData], {type: "text/plain;charset=utf-8"});
+    FileSaver.saveAs(blob, "generated.md"); 
+  }
+
+  downloadHtml = (event) => {
+    alert('Данная функция находится еще в разработке!');
+  }
+
+  inDevAlert = (event) => {
+    alert('Данная функция находится еще в разработке!');
+  }
+
 
   dummyMethod = (event) => {
     return;
@@ -58,6 +102,7 @@ class App extends Component {
 
     return (
       <div className="App">
+        <Navbar onClickMD={this.downloadMD} onClickHtml={this.downloadHtml} inDevAlert={this.inDevAlert} />
         <br />
         <div className="row">
           <div className="col s6 input">
@@ -109,7 +154,7 @@ class App extends Component {
 
               <div className="row">
                 <div className="col s12">
-                <InputField
+                  <InputField
                     fieldId={mdText[0]}
                     label={mdText[1]}
                     value={mdText[2]}
@@ -126,7 +171,7 @@ class App extends Component {
             <h1><OutputField output={this.state.doc.title[2]} /></h1>
             <h3><OutputField output={this.state.doc.origin[2]} /></h3>
             <strong><OutputField output={this.state.doc.source[2]} /></strong>
-            <OutputField output={this.state.doc.mdResult} />
+            <OutputField output={this.state.doc.mdResult[1]} />
           </div>
         </div>
       </div>
