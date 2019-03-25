@@ -1,14 +1,14 @@
 import React from 'react';
 
-const InputField = ({ fieldName, value, action }) => 
+const InputField = ({ fieldId ,label, value, action }) => 
     <div className="input-field">
         <textarea
-            id={fieldName}
+            id={fieldId}
             className="materialize-textarea"
             value={value}
             onChange={action}
         ></textarea>
-        <label htmlFor={fieldName}>{fieldName}</label>
+        <label htmlFor={fieldId}>{label}</label>
     </div>
 
 

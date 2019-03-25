@@ -32,18 +32,18 @@ class App extends Component {
     this.setState({ list: updatedList });
   }
 
-  onInputChangeMd = (event) => {
+  onInputChangeMd = (param) => (event) => {
     let doc = { ...this.state.doc };
-    doc.mdExample = event.target.value
-    doc.mdResult = md.render(doc.mdExample)
+    doc[param[0]][2]= event.target.value
+    doc.mdResult = md.render(doc[param[0]][2])
     this.setState({ doc });
   }
 
   onInputChange = (param) => (event) => {
     let doc = { ...this.state.doc };
-    console.log(param);
-    doc[param] = event.target.value
+    doc[param[0]][2] = event.target.value
     this.setState({ doc });
+
   }
 
   dummyMethod = (event) => {
@@ -53,11 +53,7 @@ class App extends Component {
 
   render() {
 
-    const { author, title, mdExample } = this.state.doc;
-
-    const authorStr = Object.keys({ author })[0];
-    const titleStr = Object.keys({ title })[0];
-    const mdExampleStr = Object.keys({ mdExample })[0];
+    const { author, title, origin, source, mdText } = this.state.doc;
 
     return (
       <div className="App">
@@ -69,9 +65,10 @@ class App extends Component {
               <div className="row">
                 <div className="col s6">
                   <InputField
-                    fieldName={authorStr}
-                    value={author}
-                    action={this.onInputChange(authorStr)}
+                    fieldId={author[0]}
+                    label={author[1]}
+                    value={author[2]}
+                    action={this.onInputChange(author)}
                   />
                 </div>
               </div>
@@ -79,19 +76,43 @@ class App extends Component {
               <div className="row">
                 <div className="col s6">
                   <InputField
-                    fieldName={titleStr}
-                    value={title}
-                    action={this.onInputChange(titleStr)}
+                    fieldId={title[0]}
+                    label={title[1]}
+                    value={title[2]}
+                    action={this.onInputChange(title)}
+                  />
+                </div>
+              </div>
+
+              <div className="row">
+                <div className="col s6">
+                  <InputField
+                    fieldId={origin[0]}
+                    label={origin[1]}
+                    value={origin[2]}
+                    action={this.onInputChange(origin)}
+                  />
+                </div>
+              </div>
+
+              <div className="row">
+                <div className="col s6">
+                  <InputField
+                    fieldId={source[0]}
+                    label={source[1]}
+                    value={source[2]}
+                    action={this.onInputChange(source)}
                   />
                 </div>
               </div>
 
               <div className="row">
                 <div className="col s12">
-                  <InputField
-                    fieldName={mdExampleStr}
-                    value={mdExample}
-                    action={this.onInputChangeMd}
+                <InputField
+                    fieldId={mdText[0]}
+                    label={mdText[1]}
+                    value={mdText[2]}
+                    action={this.onInputChangeMd(mdText)}
                   />
                 </div>
               </div>
@@ -100,9 +121,10 @@ class App extends Component {
           </div>
 
           <div className="col s6 output">
-            <OutputField output={this.state.doc.author} />
-            <OutputField output={this.state.doc.title} />
-
+            <h2><OutputField output={this.state.doc.author[2]} /></h2>
+            <h1><OutputField output={this.state.doc.title[2]} /></h1>
+            <h3><OutputField output={this.state.doc.origin[2]} /></h3>
+            <strong><OutputField output={this.state.doc.source[2]} /></strong>
             <OutputField output={this.state.doc.mdResult} />
           </div>
         </div>
