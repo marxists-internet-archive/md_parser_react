@@ -11,7 +11,7 @@ const Navbar = ({ onClickMD, onClickHtml, inDevAlert, addNobr, addNbsp, addFootN
                 <li>
                     <a onClick={inDevAlert}>
                         Текст&nbsp;
-                    <span className="new badge" data-badge-caption="ОК"></span>
+                    {/* <span className="new badge" data-badge-caption="ОК"></span> */}
                     </a>
 
                 </li>
