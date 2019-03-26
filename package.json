@@ -4,6 +4,7 @@
   "private": true,
   "homepage": ".",
   "dependencies": {
+    "draft-js": "^0.10.5",
     "file-saver": "^2.0.1",
     "handlebars": "^4.1.1",
     "js-beautify": "^1.9.1",

@@ -23,14 +23,14 @@ color:#212121 !important;
 
 
 .output {
-  overflow: scroll;
+  overflow-y: scroll !important;
   height: 90vh;
 
 
 }
 
 .input {
-  overflow: scroll !important;
+  overflow-y: scroll !important;
   height: 90vh;
   border-right: 1px solid grey;
 
@@ -47,3 +47,184 @@ color:#212121 !important;
   height: 80vh !important;
   overflow: scroll !important;
 } */
+
+
+/* ==================
+output styles
+===================== */
+
+
+.mdtext-prewiev{
+  width: 90%;
+  max-width: 1000px;
+  min-width: 320px;
+  color: #444;
+  font-size: 18px;
+  margin: 40px auto auto;
+  text-align: justify;
+  font-family: "Hoefler Text", "Century Schoolbook", "Times New Roman", serif;
+  
+
+}
+
+.mdtext-prewiev__breadcrumbs{
+  font-size: .9em;
+}
+
+.mdtext-prewiev__breadcrumbs a{
+  color: #444;
+}
+
+.mdtext-prewiev__title{
+  color: brown;
+  font-weight: bold;
+  font-size: 3em;
+  text-align: center;
+  margin: 20px auto;
+}
+
+.mdtext-prewiev__author{
+  font-weight: bold;
+  text-align: center;
+  font-size: 1.8em;
+  margin: 20px auto;
+}
+
+.mdtext-prewiev__origin{
+  width: 90%;
+  margin: 15px;
+}
+
+.mdtext-prewiev__origin-description{
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 1.5em;
+}
+
+ul, ol {
+  margin-left: 25px;
+}
+
+
+
+hr {
+  max-width: 1000px;
+}
+
+.author-page-header{
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  flex-direction: row;
+  width: 90%;
+  max-width: 1000px;
+  min-width: 320px;
+  color: #444;
+  font-size: 18px;
+  font-family: "Hoefler Text", "Century Schoolbook", "Times New Roman", serif;
+  margin: 0 auto;
+  justify-content: space-between;
+  margin: 10px auto;
+}
+
+.author-page-header__photo-block{
+  width: 250px;
+  text-align: center;
+}
+
+.author-page-header__text-block{
+  width: 95%;
+  max-width: 700px;
+  flex-grow: 4;
+}
+
+.author-page-header__name{
+  color: brown;
+  font-weight: bold;
+  font-size: 3em;
+  text-align: center;
+  margin: 20px auto;
+  text-align: center;
+}
+
+.author-page-header__years {
+  font-size: 1.5em;
+  text-align: center;
+  font-weight: bold;
+}
+
+@media all and (max-width: 600px ){
+  .author-page-header{
+    flex-direction: column;
+  }
+  .author-page-header__name{
+    font-size: 1.5em;
+    margin: 15px auto;
+  }
+
+  .author-page-header__years {
+    font-size: 1.1em;
+    margin: 0 auto 10px auto;
+  }
+}
+
+
+.mix-panel{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 90%;
+  max-width: 1000px;
+  min-width: 320px;
+  color: #444;
+  font-size: 18px;
+  margin: 0 auto;
+  font-family: "Hoefler Text", "Century Schoolbook", "Times New Roman", serif;
+}
+
+.mix-panel__item{
+  display: inline-block;
+  width: 150px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  font-size: .9em;
+}
+
+.mix-panel-active {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.author-page-content{
+  width: 90%;
+  max-width: 1000px;
+  min-width: 320px;
+  color: #444;
+  font-size: 18px;
+  margin: 0 auto;
+  font-family: "Hoefler Text", "Century Schoolbook", "Times New Roman", serif;
+}
+
+.author-page-content__maintitle{
+  text-align: center;
+}
+
+.author-page-content__category-name{
+  font-size: 1.2em;
+  font-weight: bold;
+  margin: 20px 0;
+}
+
+.category-list{
+  margin: 15px 20px;
+  list-style-type: none;
+}
+
+.category-list__item{
+  
+}
+
+

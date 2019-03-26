@@ -1,6 +1,6 @@
 import React from 'react';
 
-const InputField = ({ fieldId ,label, value, action }) => 
+const InputField = ({ fieldId ,label, value, action, highlight }) => 
     <div className="input-field">
         <textarea
             id={fieldId}
