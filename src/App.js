@@ -242,7 +242,7 @@ class App extends Component {
                 <div className="mdtext-prewiev__body">
                   <hr />
                   <div className="mdtext-prewiev__origin">
-                    <OutputField output={this.state.doc.origin[2]} />
+                    <a href={this.state.doc.source[2]}><OutputField output={this.state.doc.origin[2]} /></a>
                   </div>
                   <hr />
 

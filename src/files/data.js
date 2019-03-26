@@ -2,7 +2,7 @@ const list = {
     author: ['author', 'Автор','Макаренко Антон Семёнович'],
     title: ['title', 'Название', 'Методика организации воспитательного процесса'],
     origin: ['origin', 'Источник', 'А.С. Макаренко Педагогические сочинения в восьми томах. Т.1 стр.267-329'],
-    source: ['source', 'Ссылка на источник', 'https://www.marxists.org/russkij/archive/makarenko/org_process.html'],
+    source: ['source', 'Ссылка на источник', 'https://www.marxists.org/'],
 
     mdText:['mdText','Текст',
 `## 1. Организационное строение коллектива
