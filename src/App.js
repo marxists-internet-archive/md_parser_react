@@ -163,7 +163,7 @@ class App extends Component {
           onClickMD={this.downloadMD} 
           onClickHtml={this.downloadHtml} 
           inDevAlert={this.inDevAlert}
-          addNobr={this.addTag(mdText, '<nobr>', '</nobr>', 0)}
+          addNobr={this.addTag(mdText, '<nobr>', '</nobr>', 6)}
           addNbsp={this.addTag(mdText, '&nbsp;', '', 0)}
           addFootNote={this.addTag(mdText, '^[]', '', 2)}
 
