@@ -29,7 +29,7 @@ color:#212121 !important;
 .output {
   overflow-y: scroll !important;
   height: 90vh;
-
+  
 
 }
 
@@ -67,9 +67,16 @@ output styles
   margin: 40px auto auto;
   text-align: justify;
   font-family: "Hoefler Text", "Century Schoolbook", "Times New Roman", serif;
-  
+
 
 }
+
+  p {
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+   }
 
 .mdtext-prewiev__breadcrumbs{
   font-size: .9em;

@@ -234,7 +234,7 @@ class App extends Component {
 
             <div className="col s6 output">
 
-              <div className="mdtext-prewiev">
+              <div lang="ru" className="mdtext-prewiev">
                 <div className="mdtext-prewiev__header">
                   <h1 className="mdtext-prewiev__title"><OutputField output={this.state.doc.author[2]} /></h1>
                   <div className="mdtext-prewiev__author"><OutputField output={this.state.doc.title[2]} /></div>
