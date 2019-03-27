@@ -33,12 +33,18 @@ const Navbar = ({ onClickMD, onClickHtml, inDevAlert, addThinsp, addNbsp, addFoo
                             <li id="separator">
                                 |
                             </li>
+                            <li><a
+                                className="waves-effect waves-light btn grey lighten-1 tooltipped"
+                                data-tooltip="сгенерировать оглавление"
+                                onClick={genChapters}>
+                                GEN</a>
+                            </li>
                         </ul>
                     </div>
                     <div id="dropdownWidth" className="col s5">
                         <ul>
                             <li>
-                                <a id="dropdownTrigger" onClick={genChapters} className='dropdown-trigger btn' href='#' data-target='dropdown1'>Оглавление</a>
+                                <a id="dropdownTrigger" className='dropdown-trigger btn' href='#' data-target='dropdown1'>Оглавление</a>
 
                                 <ul id='dropdown1' className='dropdown-content'>
 
