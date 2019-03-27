@@ -47,6 +47,10 @@ color:#212121 !important;
   border-radius: 4px;
 }
 
+col.s3 > .dropdown-trigger {
+  width: 100% !important;
+}
+
 /* textarea {
   height: 80vh !important;
   overflow: scroll !important;
@@ -67,11 +71,9 @@ output styles
   margin: 40px auto auto;
   text-align: justify;
   font-family: "Hoefler Text", "Century Schoolbook", "Times New Roman", serif;
-
-
 }
 
-  p {
+  p, h2  {
     hyphens: auto;
     -webkit-hyphens: auto;
     -moz-hyphens: auto;

@@ -1,63 +1,61 @@
 import React from 'react';
 
 
-const Navbar = ({ onClickMD, onClickHtml, inDevAlert, addNobr, addNbsp, addFootNote }) =>
-    <nav>
-        <div className="nav-wrapper blue-grey lighten-5">
-            <a href="#" className="brand-logo right">
-                ....
-            </a>
-            <ul id="nav-mobile" className="left hide-on-med-and-down" >
-                <li>
-                    <a onClick={inDevAlert}>
-                        Текст&nbsp;
-                    {/* <span className="new badge" data-badge-caption="ОК"></span> */}
-                    </a>
+const Navbar = ({ onClickMD, onClickHtml, inDevAlert, addThinsp, addNbsp, addFootNote, genChapters}) =>
+    <div>
+        <nav>
+            <div className="nav-wrapper blue-grey lighten-5">
 
-                </li>
+                <div className="row">
+                    <div className="col s6">
 
-                <li><a onClick={inDevAlert}>Метаданные&nbsp;</a></li>
-                <li><a onClick={inDevAlert}>Предпросмотр&nbsp;</a></li>
-                <li>
-                        <a
-                            className="waves-effect waves-light btn blue-grey lighten-4 tooltipped"
-                            data-position="bottom" 
-                            data-tooltip="неразрывный пробел"
-                            onClick={addNbsp}>
-                            NBSP
-                        </a>
-                </li>
-                <li>
-                    <a
-                        className="waves-effect waves-light btn blue-grey lighten-4 tooltipped"
-                        data-position="bottom" 
-                        data-tooltip="запретить перенос<br> (выделите текст)"
-                        onClick={addNobr}>
-                        NOBR</a>
-                </li>
-                <li>
-                    <a
-                        className="waves-effect waves-light btn blue-grey lighten-4 tooltipped"
-                        data-position="bottom" 
-                        data-tooltip="сноска"
-                        onClick={addFootNote}>
-                        FOOTNOTE</a>
-                </li>
-                <li id="separator">
-                    |
-                </li>
-                <li><a
-                    className="waves-effect waves-light btn grey lighten-1"
-                    onClick={onClickMD} >
-                    СОЗДАТЬ MD</a></li>
-                <li><a
-                    className="waves-effect waves-light btn grey lighten-1"
-                    onClick={onClickHtml}>
-                    СОЗДАТЬ HTML</a></li>
+                        <ul id="nav-mobile" className="left hide-on-med-and-down" >
+                            <li>
+                                <a
+                                    className="waves-effect waves-light btn blue-grey lighten-4 tooltipped"
+                                    data-position="bottom"
+                                    data-tooltip="добавить сноску"
+                                    onClick={addFootNote}>
+                                    FOOTNOTE</a>
+                            </li>
+                            <li id="separator">
+                                |
+                            </li>
+                            <li><a
+                                className="waves-effect waves-light btn grey lighten-1"
+                                onClick={onClickMD} >
+                                СОЗДАТЬ MD</a></li>
+                            <li><a
+                                className="waves-effect waves-light btn grey lighten-1"
+                                onClick={onClickHtml}>
+                                СОЗДАТЬ HTML</a>
+                            </li>
+                            <li id="separator">
+                                |
+                            </li>
+                        </ul>
+                    </div>
+                    <div id="dropdownWidth" className="col s5">
+                        <ul>
+                            <li>
+                                <a id="dropdownTrigger" onClick={genChapters} className='dropdown-trigger btn' href='#' data-target='dropdown1'>Оглавление</a>
 
-            </ul>
-        </div>
-    </nav>
+                                <ul id='dropdown1' className='dropdown-content'>
+
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </nav>
+
+
+    </div>
+
+
 
 
 export default Navbar;

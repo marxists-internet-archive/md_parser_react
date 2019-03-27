@@ -27,8 +27,8 @@ var md = require('markdown-it')({
 var FileSaver = require('file-saver');
 var beautify_js = require('js-beautify');
 const Typograf = require('typograf');
-const tp = new Typograf({locale: ['ru', 'en-US']});
-
+const tp = new Typograf({ locale: ['ru', 'en-US'] });
+let timeout = null;
 
 // let handlebars = require('handlebars');
 
@@ -40,6 +40,7 @@ class App extends Component {
 
     this.state = {
       doc,
+      timeout,
     }
   }
 
@@ -47,6 +48,16 @@ class App extends Component {
     console.log('render markdown text')
     this.renderMD(this.state.doc.mdText);
     M.AutoInit();
+    window.addEventListener("resize", this.changeDropdownWidth)
+    this.changeDropdownWidth();
+  }
+
+  changeDropdownWidth = () => {
+    let dropdownCol = document.getElementById("dropdownWidth");
+    let dropdown = document.getElementById("dropdownTrigger");
+    console.log(dropdownCol.offsetWidth);
+    dropdown.style["width"] = dropdownCol.offsetWidth + "px";
+
   }
 
   myXOR = (a, b) => {
@@ -60,14 +71,15 @@ class App extends Component {
   renderMD = (param) => {
     let doc = { ...this.state.doc };
     doc.mdResult[1] = md.render(doc[param[0]][2])
-    this.setState({ doc });
+    this.setState({ doc }, () => { this.generateChapters(); });
   }
 
   onInputChangeMd = (param) => (event) => {
-    let doc = { ...this.state.doc };
-    doc[param[0]][2] = event.target.value
-    doc.mdResult[1] = md.render(tp.execute(doc[param[0]][2]))
-    this.setState({ doc });
+      let doc = { ...this.state.doc };
+      doc[param[0]][2] = event.target.value
+      doc.mdResult[1] = md.render(tp.execute(doc[param[0]][2]))
+      this.setState({ doc });
+ 
   }
 
   onInputChange = (param) => (event) => {
@@ -77,7 +89,37 @@ class App extends Component {
 
   }
 
+  generateChapters = () => {
+    const chapters = document.querySelectorAll("h2");
+    const dropdown = document.getElementById("dropdown1");
+    while (dropdown.firstChild) {
+      dropdown.removeChild(dropdown.firstChild);
+    }
+    console.log('generate chapters');
+    // chapters.forEach((heading) => {
+    //   console.log(heading.textContent)
 
+    // });
+    for (let i = 0; i < chapters.length; i++) {
+      //create link from h2 elem
+      let li = document.createElement("li");
+      let linkText = document.createTextNode(chapters[i].textContent);
+      let a = document.createElement("a");
+      a.appendChild(linkText);
+      a.href = "#chapter" + [i + 1];
+      li.appendChild(a);
+      //append to dropdown
+      dropdown.appendChild(li);
+
+      //seed chapters id's to h2
+      chapters[i].id = 'chapter' + (i + 1);
+
+
+
+    }
+
+
+  }
 
   downloadMD = (event) => {
     // TODO: Check if fields are filled.
@@ -117,7 +159,7 @@ class App extends Component {
     return;
   }
 
-  addTag = (param, open, close, cursorOffset) => (event)  => {
+  addTag = (param, open, close, cursorOffset) => (event) => {
     document.getElementById('mdText').focus();
     console.log(document.activeElement.value);
     let text = document.activeElement
@@ -126,28 +168,29 @@ class App extends Component {
 
     let doc = { ...this.state.doc };
     let input = text.value;
-    console.log(start + " " +  end);
+    console.log(start + " " + end);
     var output = [
       input.slice(0, start),
-      open, 
+      open,
       input.slice(start, end),
       close,
       input.slice(end)
-      ].join('')
+    ].join('')
 
 
     doc[param[0]][2] = output;
-    this.setState({ 
-      doc }, () => {this.setCursor(start, cursorOffset, 'mdText' ); })
-     
+    this.setState({
+      doc
+    }, () => { this.setCursor(start, cursorOffset, 'mdText'); })
+
     // const setCursor = document.getElementById('mdText');
     // setCursor.focus();
 
   }
 
-  setCursor(pos, offset, selector ){
+  setCursor(pos, offset, selector) {
     document.getElementById(selector).focus();
-    document.getElementById(selector).setSelectionRange(pos+offset, pos+offset);
+    document.getElementById(selector).setSelectionRange(pos + offset, pos + offset);
   }
 
 
@@ -160,13 +203,12 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <Navbar 
-          onClickMD={this.downloadMD} 
-          onClickHtml={this.downloadHtml} 
-          inDevAlert={this.inDevAlert}
-          addNobr={this.addTag(mdText, '<nobr>', '</nobr>', 6)}
-          addNbsp={this.addTag(mdText, '&nbsp;', '', 0)}
-          addFootNote={this.addTag(mdText, '^[]', '', 2)}
+          <Navbar
+            onClickMD={this.downloadMD}
+            onClickHtml={this.downloadHtml}
+            inDevAlert={this.inDevAlert}
+            addFootNote={this.addTag(mdText, '^[]', '', 2)}
+            genChapters={this.generateChapters}
 
           />
           <div className="row shadow">
