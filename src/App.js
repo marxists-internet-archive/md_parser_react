@@ -26,6 +26,8 @@ var md = require('markdown-it')({
 }).use(require('markdown-it-footnote'));;
 var FileSaver = require('file-saver');
 var beautify_js = require('js-beautify');
+const Typograf = require('typograf');
+const tp = new Typograf({locale: ['ru', 'en-US']});
 
 
 // let handlebars = require('handlebars');
@@ -44,7 +46,6 @@ class App extends Component {
   componentDidMount() {
     console.log('render markdown text')
     this.renderMD(this.state.doc.mdText);
-
     M.AutoInit();
   }
 
@@ -65,7 +66,7 @@ class App extends Component {
   onInputChangeMd = (param) => (event) => {
     let doc = { ...this.state.doc };
     doc[param[0]][2] = event.target.value
-    doc.mdResult[1] = md.render(doc[param[0]][2])
+    doc.mdResult[1] = md.render(tp.execute(doc[param[0]][2]))
     this.setState({ doc });
   }
 

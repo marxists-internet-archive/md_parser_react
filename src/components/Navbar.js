@@ -43,8 +43,8 @@ const Navbar = ({ onClickMD, onClickHtml, inDevAlert, addNobr, addNbsp, addFootN
                         onClick={addFootNote}>
                         FOOTNOTE</a>
                 </li>
-                <li>
-                    <a>|</a>
+                <li id="separator">
+                    |
                 </li>
                 <li><a
                     className="waves-effect waves-light btn grey lighten-1"
