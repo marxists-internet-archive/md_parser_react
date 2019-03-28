@@ -1,16 +1,15 @@
 import React from 'react';
 
 
-const Navbar = ({ onClickMD, onClickHtml, inDevAlert, addThinsp, addNbsp, addFootNote, genChapters}) =>
+const Navbar = ({ onClickMD, onClickHtml, inDevAlert, addThinsp, addNbsp, addFootNote, genChapters }) =>
     <div>
         <nav>
             <div className="nav-wrapper blue-grey lighten-5">
 
                 <div className="row">
-                    <div className="col s6">
-
+                    <div className="col s2">
                         <ul id="nav-mobile" className="left hide-on-med-and-down" >
-                            <li>
+                        <li>
                                 <a
                                     className="waves-effect waves-light btn blue-grey lighten-4 tooltipped"
                                     data-position="bottom"
@@ -21,23 +20,33 @@ const Navbar = ({ onClickMD, onClickHtml, inDevAlert, addThinsp, addNbsp, addFoo
                             <li id="separator">
                                 |
                             </li>
-                            <li><a
-                                className="waves-effect waves-light btn grey lighten-1"
-                                onClick={onClickMD} >
-                                СОЗДАТЬ MD</a></li>
-                            <li><a
-                                className="waves-effect waves-light btn grey lighten-1"
-                                onClick={onClickHtml}>
-                                СОЗДАТЬ HTML</a>
-                            </li>
-                            <li id="separator">
-                                |
-                            </li>
-                            <li><a
-                                className="waves-effect waves-light btn grey lighten-1 tooltipped"
-                                data-tooltip="сгенерировать оглавление"
-                                onClick={genChapters}>
-                                GEN</a>
+                        </ul>
+                    </div>
+                    <div className="col s4">
+                        <ul id="nav-mobile" className="left hide-on-med-and-down" >
+
+
+                            <li>
+                                <a id="dropdownTriggerTools" className='dropdown-trigger btn' href='#' data-target='dropdownTools'>ИНСТРУМЕНТЫ</a>
+
+                                <ul id='dropdownTools' className='dropdown-content'>
+                                    <li><a
+                                        // className="waves-effect waves-light btn grey lighten-1 tooltipped"
+                                        // data-tooltip="сгенерировать оглавление"
+                                        onClick={genChapters}>
+                                        СГЕНЕРИРОВАТЬ ОЛАВЛЕНИЕ</a>
+                                    </li>
+                                    <li><a
+                                        // className="waves-effect waves-light btn grey lighten-1"
+                                        onClick={onClickMD} >
+                                        СОЗДАТЬ MD</a>
+                                    </li>
+                                    <li><a
+                                        // className="waves-effect waves-light btn grey lighten-1"
+                                        onClick={onClickHtml}>
+                                        СОЗДАТЬ HTML</a>
+                                    </li>
+                                </ul>
                             </li>
                         </ul>
                     </div>
@@ -50,7 +59,6 @@ const Navbar = ({ onClickMD, onClickHtml, inDevAlert, addThinsp, addNbsp, addFoo
 
                                 </ul>
                             </li>
-
                         </ul>
                     </div>
                 </div>

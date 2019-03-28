@@ -48,17 +48,28 @@ class App extends Component {
     console.log('render markdown text')
     this.renderMD(this.state.doc.mdText);
     M.AutoInit();
-    window.addEventListener("resize", this.changeDropdownWidth)
+    window.addEventListener("resize", this.changeDropdownWidth("dropdownWidth", "dropdownTrigger"))
     this.changeDropdownWidth();
   }
 
-  changeDropdownWidth = () => {
-    let dropdownCol = document.getElementById("dropdownWidth");
-    let dropdown = document.getElementById("dropdownTrigger");
-    console.log(dropdownCol.offsetWidth);
+  changeDropdownWidth = (parent, child) => {
+    console.log(parent);
+    console.log(child);
+    let dropdownCol = document.getElementById(parent);
+    let dropdown = document.getElementById(child);
+    // console.log(dropdownCol.offsetWidth);
     dropdown.style["width"] = dropdownCol.offsetWidth + "px";
 
   }
+
+
+  // changeDropdownWidth = (parent, child) => {
+  //   let dropdownCol = document.getElementById("dropdownWidth");
+  //   let dropdown = document.getElementById("dropdownTrigger");
+  //   console.log(dropdownCol.offsetWidth);
+  //   dropdown.style["width"] = dropdownCol.offsetWidth + "px";
+
+  // }
 
   myXOR = (a, b) => {
     return (a || b) && !(a && b);
