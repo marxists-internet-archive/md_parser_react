@@ -55,7 +55,8 @@ const Navbar = ({ onClickMD, onClickHtml, inDevAlert, addThinsp, addNbsp, addFoo
                     <div id="dropdownWidth" className="col s6">
                         <ul>
                             <li>
-                                <a id="dropdownTrigger" className='dropdown-trigger btn' href='#' data-target='dropdown1'>Оглавление</a>
+                                <a id="dropdownTrigger" className='dropdown-trigger btn tooltipped' href='#' data-target='dropdown1' data-position="left"
+                                    data-tooltip="[ИНСТРУМЕНТЫ]>[СГЕНЕРИРОВАТЬ ОГЛАВЛЕНИЕ]<br>для того чтобы заново сгенерировать оглавление">Оглавление</a>
 
                                 <ul id='dropdown1' className='dropdown-content'>
                                 </ul>
