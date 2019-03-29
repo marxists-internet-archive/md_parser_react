@@ -11,6 +11,7 @@
     "markdown-it": "^8.4.2",
     "markdown-it-footnote": "^3.0.1",
     "materialize-css": "^1.0.0-rc.2",
+    "moment": "^2.24.0",
     "normalize.css": "^8.0.1",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",

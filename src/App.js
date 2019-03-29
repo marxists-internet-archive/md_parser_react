@@ -7,7 +7,10 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import InputField from './components/InputField';
 import OutputField from './components/OutputField';
-import Navbar from './components/Navbar'
+import Navbar from './components/Navbar';
+
+import moment from 'moment';
+import 'moment/locale/ru';
 
 //editor utils
 import { Editor, EditorState, RichUtils } from 'draft-js';
@@ -30,6 +33,9 @@ const Typograf = require('typograf');
 const tp = new Typograf({ locale: ['ru', 'en-US'] });
 let timeout = null;
 
+
+
+
 // let handlebars = require('handlebars');
 
 
@@ -41,6 +47,7 @@ class App extends Component {
     this.state = {
       doc,
       timeout,
+
     }
   }
 
@@ -52,7 +59,7 @@ class App extends Component {
     window.addEventListener("resize", this.changeDropdownWidthTools);
     this.changeDropdownWidth();
     this.changeDropdownWidthTools();
- 
+
   }
 
 
@@ -86,11 +93,11 @@ class App extends Component {
   }
 
   onInputChangeMd = (param) => (event) => {
-      let doc = { ...this.state.doc };
-      doc[param[0]][2] = event.target.value
-      doc.mdResult[1] = md.render(tp.execute(doc[param[0]][2]))
-      this.setState({ doc });
- 
+    let doc = { ...this.state.doc };
+    doc[param[0]][2] = event.target.value
+    doc.mdResult[1] = md.render(tp.execute(doc[param[0]][2]))
+    this.setState({ doc });
+
   }
 
   onInputChange = (param) => (event) => {
@@ -98,6 +105,26 @@ class App extends Component {
     doc[param[0]][2] = event.target.value
     this.setState({ doc });
 
+  }
+
+  onInputChangeDate = (param) => (event) => {
+    let doc = { ...this.state.doc };
+    moment.locale('ru');
+    const dateString = event.target.value;
+    const ruMoment = moment(event.target.value);
+    doc[param[0]][2] = event.target.value
+
+    if (dateString.match(/^\d{4}-\d{2}-\d{2}$/)) {
+      doc.dateResult[1] = ruMoment.format('LL')
+    } else if (dateString.match(/^\d{4}-\d{2}$/)) {
+      doc.dateResult[1] = ruMoment.format('MMMM YYYY');
+    } else if (dateString.match(/^\d{4}$/)) {
+      doc.dateResult[1] = ruMoment.format('YYYY') + "-й";
+    } else {
+      doc.dateResult[1] = '<p style="color:red">Пожалуйста введите правильный формат числа! Например 1917 или 1917-11 или 1917-11-07</p>'
+    }
+
+    this.setState({ doc });
   }
 
   generateChapters = () => {
@@ -109,7 +136,6 @@ class App extends Component {
     console.log('generate chapters');
     // chapters.forEach((heading) => {
     //   console.log(heading.textContent)
-
     // });
     for (let i = 0; i < chapters.length; i++) {
       //create link from h2 elem
@@ -124,9 +150,6 @@ class App extends Component {
 
       //seed chapters id's to h2
       chapters[i].id = 'chapter' + (i + 1);
-
-
-
     }
 
 
@@ -188,15 +211,10 @@ class App extends Component {
       input.slice(end)
     ].join('')
 
-
     doc[param[0]][2] = output;
     this.setState({
       doc
     }, () => { this.setCursor(start, cursorOffset, 'mdText'); })
-
-    // const setCursor = document.getElementById('mdText');
-    // setCursor.focus();
-
   }
 
   setCursor(pos, offset, selector) {
@@ -209,7 +227,7 @@ class App extends Component {
 
   render() {
 
-    const { author, title, origin, source, mdText } = this.state.doc;
+    const { author, title, origin, source, date, publication, keywords, translation, mdText } = this.state.doc;
 
     return (
       <Router>
@@ -272,6 +290,53 @@ class App extends Component {
                 </div>
 
                 <div className="row">
+                  <div className="col s6">
+                    <InputField
+                      fieldId={date[0]}
+                      label={date[1]}
+                      value={date[2]}
+                      action={this.onInputChangeDate(date)}
+                    />
+                  </div>
+                </div>
+
+
+                <div className="row">
+                  <div className="col s6">
+                    <InputField
+                      fieldId={publication[0]}
+                      label={publication[1]}
+                      value={publication[2]}
+                      action={this.onInputChange(publication)}
+                    />
+                  </div>
+                </div>
+
+                <div className="row">
+                  <div className="col s6">
+                    <InputField
+                      fieldId={keywords[0]}
+                      label={keywords[1]}
+                      value={keywords[2]}
+                      action={this.onInputChange(keywords)}
+                    />
+                  </div>
+                </div>
+
+                <div className="row">
+                  <div className="col s6">
+                    <InputField
+                      fieldId={translation[0]}
+                      label={translation[1]}
+                      value={translation[2]}
+                      action={this.onInputChange(translation)}
+                    />
+                  </div>
+                </div>
+
+
+
+                <div className="row">
                   <div className="col s12">
                     <InputField
                       fieldId={mdText[0]}
@@ -282,6 +347,7 @@ class App extends Component {
                   </div>
                 </div>
 
+
               </form>
             </div>
 
@@ -289,17 +355,22 @@ class App extends Component {
 
               <div lang="ru" className="mdtext-prewiev">
                 <div className="mdtext-prewiev__header">
-                  <h1 className="mdtext-prewiev__title"><OutputField output={this.state.doc.author[2]} /></h1>
-                  <div className="mdtext-prewiev__author"><OutputField output={this.state.doc.title[2]} /></div>
+
+                  <div className="mdtext-prewiev__author"><OutputField output={this.state.doc.author[2]} /></div>
+                  <h1 className="mdtext-prewiev__title"><OutputField output={this.state.doc.title[2]} /></h1>
                 </div>
 
                 <div className="mdtext-prewiev__body">
                   <hr />
                   <div className="mdtext-prewiev__origin">
-                    <a href={this.state.doc.source[2]}><OutputField output={this.state.doc.origin[2]} /></a>
+                    <strong className="mdtext-prewiev__origin-description">Источник: </strong><a href={this.state.doc.source[2]}><OutputField output={this.state.doc.origin[2]} /></a>
+                  </div>
+
+                  <div className="mdtext-prewiev__origin">
+                    <strong className="mdtext-prewiev__origin-description">Впервые опубликованно: </strong>
+                    <OutputField output={this.state.doc.dateResult[1]} /> <OutputField output={this.state.doc.publication[2]} />
                   </div>
                   <hr />
-
                   {/* <OutputField output={this.state.doc.source[2]} /> */}
                   <div className="mdtext-prewiev__text">
                     <OutputField output={this.state.doc.mdResult[1]} />

@@ -108,6 +108,10 @@ output styles
   margin: 15px;
 }
 
+.mdtext-prewiev__origin div, p{
+  display:inline;
+}
+
 .mdtext-prewiev__origin-description{
   font-weight: bold;
 }
