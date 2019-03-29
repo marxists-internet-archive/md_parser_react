@@ -48,28 +48,28 @@ class App extends Component {
     console.log('render markdown text')
     this.renderMD(this.state.doc.mdText);
     M.AutoInit();
-    window.addEventListener("resize", this.changeDropdownWidth("dropdownWidth", "dropdownTrigger"))
+    window.addEventListener("resize", this.changeDropdownWidth);
+    window.addEventListener("resize", this.changeDropdownWidthTools);
     this.changeDropdownWidth();
+    this.changeDropdownWidthTools();
+ 
   }
 
-  changeDropdownWidth = (parent, child) => {
-    console.log(parent);
-    console.log(child);
-    let dropdownCol = document.getElementById(parent);
-    let dropdown = document.getElementById(child);
+
+
+  changeDropdownWidth = () => {
+    let dropdownCol = document.getElementById("dropdownWidth");
+    let dropdown = document.getElementById("dropdownTrigger");
     // console.log(dropdownCol.offsetWidth);
-    dropdown.style["width"] = dropdownCol.offsetWidth + "px";
-
+    dropdown.style["width"] = (dropdownCol.offsetWidth * 0.9) + "px";
   }
 
-
-  // changeDropdownWidth = (parent, child) => {
-  //   let dropdownCol = document.getElementById("dropdownWidth");
-  //   let dropdown = document.getElementById("dropdownTrigger");
-  //   console.log(dropdownCol.offsetWidth);
-  //   dropdown.style["width"] = dropdownCol.offsetWidth + "px";
-
-  // }
+  changeDropdownWidthTools = () => {
+    let dropdownCol = document.getElementById("dropdownWidthTools");
+    let dropdown = document.getElementById("dropdownTriggerTools");
+    // console.log(dropdownCol.offsetWidth);
+    dropdown.style["width"] = (dropdownCol.offsetWidth * 0.9) + "px";
+  }
 
   myXOR = (a, b) => {
     return (a || b) && !(a && b);

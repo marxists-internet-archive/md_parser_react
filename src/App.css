@@ -47,8 +47,8 @@ color:#212121 !important;
   border-radius: 4px;
 }
 
-col.s3 > .dropdown-trigger {
-  width: 100% !important;
+.dropdown-trigger {
+  width: 100% ;
 }
 
 /* textarea {
@@ -118,6 +118,10 @@ h2 {
 
 ul, ol {
   margin-left: 25px;
+}
+
+.mdtext-prewiev li {
+  margin-top: 10px;
 }
 
 

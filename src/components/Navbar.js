@@ -2,29 +2,15 @@ import React from 'react';
 
 
 const Navbar = ({ onClickMD, onClickHtml, inDevAlert, addThinsp, addNbsp, addFootNote, genChapters }) =>
+
     <div>
         <nav>
             <div className="nav-wrapper blue-grey lighten-5">
 
                 <div className="row">
-                    <div className="col s2">
-                        <ul id="nav-mobile" className="left hide-on-med-and-down" >
-                        <li>
-                                <a
-                                    className="waves-effect waves-light btn blue-grey lighten-4 tooltipped"
-                                    data-position="bottom"
-                                    data-tooltip="добавить сноску"
-                                    onClick={addFootNote}>
-                                    FOOTNOTE</a>
-                            </li>
-                            <li id="separator">
-                                |
-                            </li>
-                        </ul>
-                    </div>
-                    <div className="col s4">
-                        <ul id="nav-mobile" className="left hide-on-med-and-down" >
 
+                    <div id="dropdownWidthTools" className="col s4">
+                        <ul id="nav-mobile" className="left" >
 
                             <li>
                                 <a id="dropdownTriggerTools" className='dropdown-trigger btn' href='#' data-target='dropdownTools'>ИНСТРУМЕНТЫ</a>
@@ -50,13 +36,28 @@ const Navbar = ({ onClickMD, onClickHtml, inDevAlert, addThinsp, addNbsp, addFoo
                             </li>
                         </ul>
                     </div>
-                    <div id="dropdownWidth" className="col s5">
+                    <div className="col s1 ">
+                        <ul id="nav-mobile" className="left hide-on-med-and-down " >
+                            <li>
+                                <a
+                                    className="waves-effect waves-light btn blue-grey lighten-4 tooltipped"
+                                    data-position="bottom"
+                                    data-tooltip="добавить сноску"
+                                    onClick={addFootNote}>
+                                    FOOTNOTE
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div className="col s1">
+                    </div>
+
+                    <div id="dropdownWidth" className="col s6">
                         <ul>
                             <li>
                                 <a id="dropdownTrigger" className='dropdown-trigger btn' href='#' data-target='dropdown1'>Оглавление</a>
 
                                 <ul id='dropdown1' className='dropdown-content'>
-
                                 </ul>
                             </li>
                         </ul>
