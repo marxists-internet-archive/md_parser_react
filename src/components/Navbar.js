@@ -20,7 +20,7 @@ const Navbar = ({ onClickMD, onClickHtml, inDevAlert, addThinsp, addNbsp, addFoo
                                         // className="waves-effect waves-light btn grey lighten-1 tooltipped"
                                         // data-tooltip="сгенерировать оглавление"
                                         onClick={genChapters}>
-                                        СГЕНЕРИРОВАТЬ ОЛАВЛЕНИЕ</a>
+                                        СГЕНЕРИРОВАТЬ ОГЛАВЛЕНИЕ</a>
                                     </li>
                                     <li><a
                                         // className="waves-effect waves-light btn grey lighten-1"

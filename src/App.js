@@ -227,7 +227,7 @@ class App extends Component {
 
   render() {
 
-    const { author, title, origin, source, date, publication, keywords, translation, mdText } = this.state.doc;
+    const { author, title, origin, source, date, publication, keywords, translation, translationLink, mdText } = this.state.doc;
 
     return (
       <Router>
@@ -334,6 +334,17 @@ class App extends Component {
                   </div>
                 </div>
 
+                <div className="row">
+                  <div className="col s6">
+                    <InputField
+                      fieldId={translationLink[0]}
+                      label={translationLink[1]}
+                      value={translationLink[2]}
+                      action={this.onInputChange(translationLink)}
+                    />
+                  </div>
+                </div>
+
 
 
                 <div className="row">
@@ -367,9 +378,16 @@ class App extends Component {
                   </div>
 
                   <div className="mdtext-prewiev__origin">
-                    <strong className="mdtext-prewiev__origin-description">Впервые опубликованно: </strong>
-                    <OutputField output={this.state.doc.dateResult[1]} /> <OutputField output={this.state.doc.publication[2]} />
+                    <strong className="mdtext-prewiev__origin-description">Впервые фигурирует: </strong>
+                    <OutputField output={this.state.doc.dateResult[1]} />, <OutputField output={this.state.doc.publication[2]} />
                   </div>
+
+                  <div className="mdtext-prewiev__origin">
+                    <strong className="mdtext-prewiev__origin-description">Перевод: </strong><a href={this.state.doc.translationLink[2]}><OutputField output={this.state.doc.translation[2]} /></a>
+                  </div>
+
+
+
                   <hr />
                   {/* <OutputField output={this.state.doc.source[2]} /> */}
                   <div className="mdtext-prewiev__text">

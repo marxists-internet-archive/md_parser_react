@@ -8,6 +8,7 @@ const list = {
     publication: ['publication', 'Место [издание] первого опубликования', 'в ведомственном издании небольшим тиражом'],
     keywords: ['keywords', 'Ключевые слова (через запятую)', 'педагогика, организация, коллектив'],
     translation: ['translation', 'Перевод [optional]', ''],
+    translationLink: ['translationLink', 'Ссылка на перевод [optional]', ''],
 
 
     mdText:['mdText','Текст',
